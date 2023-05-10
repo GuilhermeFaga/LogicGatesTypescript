@@ -30,8 +30,22 @@ system.setInputValue(0, 0);
 system.setInputValue(1, 1);
 
 console.log(system)
+/*
+  System {
+    chips: [],
+    systemInputs: [
+      SystemInput { value: 0, connections: [Array] },
+      SystemInput { value: 1, connections: [Array] }
+    ],
+    systemOutput: SystemOutput {
+      value: 1,
+      connections: [ [SystemInput], [SystemInput] ]
+    }
+  }
+*/
 
 console.log("System output: ", system.getValue());
+// System output: 1
 ```
 
 And then we can use the `convertSystemToChip` method to convert the system into a single chip and use it to create an NOR gate:
@@ -62,9 +76,27 @@ system2.setInputValue(0, 0);
 system2.setInputValue(1, 0);
 
 console.log(system2);
+/*
+  System {
+    chips: [
+      Chip {
+        inputs: [Array],
+        output: [OutputPin],
+        update: [Function (anonymous)]
+      },
+      NotGate { inputs: [Array], output: [OutputPin] }
+    ],
+    systemInputs: [
+      SystemInput { value: 0, connections: [Array] },
+      SystemInput { value: 0, connections: [Array] }
+    ],
+    systemOutput: SystemOutput { value: 1, connections: [ [OutputPin] ] }
+  }
+*/
 
 // The NOR gate only returns 0 when both inputs are 1
 console.log("System output: ", system2.getValue());
+// System output: 1
 ```
 
 With this approach, we can create new logic gates and use them in new systems without having to modify the existing code.
